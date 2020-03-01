@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class TosterKeeperBootApplication {
     public static void main(String[] args) {
-        // we start FX application from common boot main method
         Application.launch(JavaFxApplication.class, args);
     }
 }

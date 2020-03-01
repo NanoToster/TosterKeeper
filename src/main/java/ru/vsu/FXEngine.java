@@ -1,51 +1,38 @@
 package ru.vsu;
 
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.IOException;
+import net.rgielen.fxweaver.core.FxWeaver;
+import ru.vsu.fxml_view.SecondStepAuthorizationController;
+import ru.vsu.fxml_view.StartScreenController;
 
 /**
  * @author Ivan Rovenskiy
  * 23 February 2020
  */
 public class FXEngine {
-    private static Scene mainMenuScene;
-    private static Stage primaryStage;
+    private static Stage stage;
+    private static FxWeaver fxWeaver;
 
-    static void initFx(Stage stage) {
-        primaryStage = stage;
-
-        mainMenuScene = new Scene(FXEngine.loadFXML("fxml_stages/authorisation_screen.fxml"));
-//        mainMenuScene.getStylesheets().add("ru/vsu/styles/main_menu.css");
-
-        setPrimaryScene(mainMenuScene);
+    public static void startApplication(Stage stage, FxWeaver fxWeaver) {
+        FXEngine.stage = stage;
+        FXEngine.fxWeaver = fxWeaver;
     }
 
-    public static void setPrimaryScene(Scene primaryScene) {
-        primaryStage.setScene(primaryScene);
-        primaryStage.show();
+    public static void showMainStage() {
+        Parent root = fxWeaver.loadView(StartScreenController.class);
+        showStage(root);
     }
 
-    private static Parent loadFXML(String fxmlFileName) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(JavaFxApplication.class.getResource(fxmlFileName));
-            return fxmlLoader.load();
-        } catch (final IOException ex) {
-            System.out.println("Some problems with files: " + ex);
-            throw new NullPointerException();
-        }
+    public static void showSecondAuthorizationStepStage() {
+        Parent root = fxWeaver.loadView(SecondStepAuthorizationController.class);
+        showStage(root);
     }
 
-//    public static Scene getMainMenuScene() {
-//        return mainMenuScene;
-//    }
-//
-//    public static Scene getGameFieldScene() {
-//        Scene gameFieldScene = new Scene(FXEngine.loadFXML("game_field.fxml"));
-//        gameFieldScene.getStylesheets().add("ru/vsu/styles/game_field.css");
-//        return gameFieldScene;
-//    }
+    private static void showStage(Parent root) {
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }
