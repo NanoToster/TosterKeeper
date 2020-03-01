@@ -15,6 +15,7 @@ public class User {
     private String name;
     private String email;
     private String passwordHash;
+    private boolean isActive;
 
     public User() {
     }
@@ -23,6 +24,7 @@ public class User {
         this.name = name;
         this.email = email;
         this.passwordHash = passwordHash;
+        this.isActive = true;
     }
 
     public long getId() {
@@ -39,5 +41,9 @@ public class User {
 
     public String getPasswordHash() {
         return passwordHash;
+    }
+
+    public boolean isActive() {
+        return isActive;
     }
 }

@@ -29,10 +29,10 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="passwordTextField1" layoutX="12.0" layoutY="49.0" prefHeight="27.0" prefWidth="273.0" promptText="User email" />
-            <TextField fx:id="passwordTextField11" layoutX="12.0" layoutY="94.0" prefHeight="27.0" prefWidth="273.0" promptText="User name" />
-            <TextField fx:id="passwordTextField111" layoutX="12.0" layoutY="135.0" prefHeight="27.0" prefWidth="273.0" promptText="Password" />
-            <Button layoutX="12.0" layoutY="170.0" mnemonicParsing="false" onAction="#loginViaHandAction" prefHeight="27.0" prefWidth="273.0" text="Register" />
+            <TextField fx:id="registrationEmailTextField" layoutX="12.0" layoutY="49.0" prefHeight="27.0" prefWidth="273.0" promptText="User email" />
+            <TextField fx:id="registrationUserNameTextField" layoutX="12.0" layoutY="94.0" prefHeight="27.0" prefWidth="273.0" promptText="User name" />
+            <TextField fx:id="registrationPasswordTextField" layoutX="12.0" layoutY="135.0" prefHeight="27.0" prefWidth="273.0" promptText="Password" />
+            <Button layoutX="12.0" layoutY="170.0" mnemonicParsing="false" onAction="#registerNewUser" prefHeight="27.0" prefWidth="273.0" text="Register" />
          </children>
       </AnchorPane>
       <Label layoutX="659.0" layoutY="105.0" prefHeight="484.0" prefWidth="601.0" rotate="-36.9" text="Placeholder for image from web camera" textFill="#f56262" underline="true">

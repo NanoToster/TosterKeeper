@@ -18,13 +18,12 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import ru.vsu.FXEngine;
-import ru.vsu.jpa.domain.HandInformation;
 import ru.vsu.jpa.domain.User;
 import ru.vsu.services.HandService;
 import ru.vsu.services.UserService;
+import ru.vsu.services.security.SecurityService;
 
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -32,7 +31,7 @@ import java.util.ResourceBundle;
  * 23 February 2020
  */
 @Component
-@FxmlView("authorisation_screen.fxml")
+@FxmlView("start_screen.fxml")
 public class StartScreenController {
     @FXML
     private ResourceBundle resources;
@@ -49,14 +48,27 @@ public class StartScreenController {
     @FXML
     private TextField passwordTextField;
 
+    // ------------------- Registration start
+
+    @FXML
+    private TextField registrationEmailTextField;
+    @FXML
+    private TextField registrationUserNameTextField;
+    @FXML
+    private TextField registrationPasswordTextField;
+
+    // ------------------- Registration end
+
     private final UserService userService;
     private final HandService handService;
     private final AuthenticationManager authenticationManager;
+    private final SecurityService securityService;
 
-    public StartScreenController(UserService userService, HandService handService, AuthenticationManager authenticationManager) {
+    public StartScreenController(UserService userService, HandService handService, AuthenticationManager authenticationManager, SecurityService securityService) {
         this.userService = userService;
         this.handService = handService;
         this.authenticationManager = authenticationManager;
+        this.securityService = securityService;
     }
 
     @FXML
@@ -76,8 +88,8 @@ public class StartScreenController {
             appendStatusText("Please, choose user.");
         } else {
             if (StringUtils.isNotBlank(passwordTextField.getText())) {
-                Authentication authToken = new UsernamePasswordAuthenticationToken(selectedUser.getId(), passwordTextField.getText());
                 try {
+                    Authentication authToken = new UsernamePasswordAuthenticationToken(selectedUser.getId(), passwordTextField.getText());
                     authToken = authenticationManager.authenticate(authToken);
                     SecurityContextHolder.getContext().setAuthentication(authToken);
                     appendStatusText("success login");
@@ -92,15 +104,46 @@ public class StartScreenController {
     }
 
     @FXML
+    void registerNewUser(ActionEvent event) {
+        if (StringUtils.isBlank(registrationEmailTextField.getText()) || !registrationEmailTextField.getText().contains("@")) {
+            // TODO [RIP]: 01/03/2020 we can add regexp here
+            appendStatusText("Invalid email");
+            return;
+        }
+        if (StringUtils.isBlank(registrationUserNameTextField.getText())) {
+            appendStatusText("Invalid username");
+            return;
+        }
+        if (StringUtils.isBlank(registrationPasswordTextField.getText())) {
+            appendStatusText("Invalid password");
+            return;
+        }
+
+        final String userSecretForGoogleAuth = securityService.generateUserSecretForGoogleAuth();
+
+        userService.addNewUser(
+                registrationUserNameTextField.getText(),
+                registrationEmailTextField.getText(),
+                registrationPasswordTextField.getText(),
+                userSecretForGoogleAuth);
+
+        appendStatusText("Please save this code to your Google Authenticator application!! You will see it only 1 time!");
+        appendStatusText("========== SECRET START =========");
+        appendStatusText(userSecretForGoogleAuth);
+        appendStatusText("=========== SECRET END ==========");
+
+        updateUserList();
+    }
+
+    @FXML
     void initialize() {
         appendStatusText("Application started!");
 
-//        userService.addNewUser("security", "sec@sec.com", "p");
+        updateUserList();
+    }
 
-        final Optional<User> userById = userService.findUserById(1);
-        final Optional<HandInformation> handById = handService.findHandById(3);
-
-        userTableView.setItems(FXCollections.observableArrayList(userService.findAllUsers()));
+    private void updateUserList() {
+        userTableView.setItems(FXCollections.observableArrayList(userService.findAllActiveUsers()));
         userNameColumn.setCellValueFactory(userCell -> new SimpleStringProperty(userCell.getValue().getName()));
     }
 
