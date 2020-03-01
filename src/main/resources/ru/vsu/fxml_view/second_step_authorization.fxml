@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.vsu.fxml_view.SecondStepAuthorizationController">
+   <children>
+      <TextField fx:id="googleAuthentificatorTextField" layoutX="204.0" layoutY="14.0" prefHeight="27.0" prefWidth="193.0" promptText="Google Authentificator code" />
+      <TextArea layoutX="11.0" layoutY="186.0" prefHeight="200.0" prefWidth="193.0" promptText="Status Area" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBackToMainScreenAction" prefHeight="27.0" prefWidth="130.0" text="Back" />
+   </children>
+</AnchorPane>
