@@ -27,7 +27,7 @@ public class JavaFxApplication extends Application {
     @Override
     public void start(Stage stage) {
         FXEngine.startApplication(stage, applicationContext.getBean(FxWeaver.class));
-        FXEngine.showMainStage();
+        FXEngine.showStartStage();
     }
 
     @Override

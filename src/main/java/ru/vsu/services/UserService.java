@@ -10,9 +10,9 @@ import java.util.Optional;
  * 23 February 2020
  */
 public interface UserService {
-    void addNewUser(String name, String email, String password);
+    void addNewUser(String name, String email, String password, String userSecretForGoogleAuth);
 
     Optional<User> findUserById(long userId);
 
-    List<User> findAllUsers();
+    List<User> findAllActiveUsers();
 }

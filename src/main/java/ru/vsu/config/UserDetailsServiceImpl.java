@@ -1,11 +1,10 @@
-package ru.vsu.services.security;
+package ru.vsu.config;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.vsu.jpa.domain.User;
 import ru.vsu.jpa.domain.UserRoleEnum;
@@ -36,7 +35,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             }
 
             return new org.springframework.security.core.userdetails.User(
-                    user.get().getName(),
+                    String.valueOf(user.get().getId()),
                     user.get().getPasswordHash(),
                     Set.of(new SimpleGrantedAuthority(UserRoleEnum.Admin.name()))); // FIXME [RIP]: 24/02/2020 every user - admin
         } else {

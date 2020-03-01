@@ -4,6 +4,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxWeaver;
+import org.springframework.security.core.context.SecurityContextHolder;
+import ru.vsu.fxml_view.MainNoteController;
 import ru.vsu.fxml_view.SecondStepAuthorizationController;
 import ru.vsu.fxml_view.StartScreenController;
 
@@ -20,13 +22,19 @@ public class FXEngine {
         FXEngine.fxWeaver = fxWeaver;
     }
 
-    public static void showMainStage() {
+    public static void showStartStage() {
+        SecurityContextHolder.clearContext();
         Parent root = fxWeaver.loadView(StartScreenController.class);
         showStage(root);
     }
 
     public static void showSecondAuthorizationStepStage() {
         Parent root = fxWeaver.loadView(SecondStepAuthorizationController.class);
+        showStage(root);
+    }
+
+    public static void showMainNoteStage() {
+        Parent root = fxWeaver.loadView(MainNoteController.class);
         showStage(root);
     }
 

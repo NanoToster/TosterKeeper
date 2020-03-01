@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import ru.vsu.services.security.UserDetailsServiceImpl;
 
 /**
  * @author Ivan Rovenskiy
