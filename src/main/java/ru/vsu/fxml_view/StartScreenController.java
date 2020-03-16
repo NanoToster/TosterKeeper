@@ -24,6 +24,7 @@ import ru.vsu.services.UserService;
 import ru.vsu.services.security.SecurityService;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 /**
@@ -140,6 +141,10 @@ public class StartScreenController {
         appendStatusText("Application started!");
 
         updateUserList();
+
+        registrationEmailTextField.setText("tanker995@gmail.com");
+        registrationUserNameTextField.setText(LocalDate.now().toString());
+        passwordTextField.setText("p");
     }
 
     private void updateUserList() {
