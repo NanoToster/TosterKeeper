@@ -29,6 +29,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
         <!--Spring boot END-->
 
         <dependency> <!-- for FX + Spring compatibility -->
@@ -72,23 +76,23 @@
         </dependency>
         <!--FX END-->
 
+        <!--Google Authenticator START-->
         <dependency>
             <groupId>de.taimos</groupId>
             <artifactId>totp</artifactId>
             <version>1.0</version>
         </dependency>
-
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
             <version>1.10</version>
         </dependency>
-
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>javase</artifactId>
             <version>3.2.1</version>
         </dependency>
+        <!--Google Authenticator END-->
     </dependencies>
 
     <build>

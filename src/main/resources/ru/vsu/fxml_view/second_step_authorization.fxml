@@ -23,5 +23,17 @@
          </children>
       </AnchorPane>
       <Button layoutX="175.0" layoutY="239.0" mnemonicParsing="false" onAction="#loginIgnoreAllSecurity" prefHeight="27.0" prefWidth="477.0" text="Login ignore all security" />
+      <AnchorPane layoutX="735.0" layoutY="14.0" prefHeight="200.0" prefWidth="477.0" style="-fx-border-color: bbbbbb;">
+         <children>
+            <TextField fx:id="emailAuthTextField" layoutX="80.0" layoutY="73.0" prefHeight="27.0" prefWidth="318.0" />
+            <Button layoutX="241.0" layoutY="135.0" mnemonicParsing="false" onAction="#checkEmailAuthCode" prefHeight="27.0" prefWidth="157.0" text="Check code" />
+            <Label alignment="CENTER" layoutX="80.0" layoutY="20.0" prefHeight="17.0" prefWidth="318.0" text="Email authentification block">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Button layoutX="80.0" layoutY="135.0" mnemonicParsing="false" onAction="#sendEmailAuthCode" prefHeight="27.0" prefWidth="157.0" text="Send email" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
