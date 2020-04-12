@@ -1,4 +1,4 @@
-package ru.vsu.services;
+package ru.vsu.services.security.first_step;
 
 import ru.vsu.jpa.domain.HandInformation;
 

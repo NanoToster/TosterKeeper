@@ -19,7 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import ru.vsu.FXEngine;
 import ru.vsu.jpa.domain.User;
-import ru.vsu.services.HandService;
+import ru.vsu.services.security.first_step.HandService;
 import ru.vsu.services.UserService;
 import ru.vsu.services.security.SecurityService;
 
@@ -49,16 +49,14 @@ public class StartScreenController {
     @FXML
     private TextField passwordTextField;
 
-    // ------------------- Registration start
-
+    // ------------------- Registration UI start
     @FXML
     private TextField registrationEmailTextField;
     @FXML
     private TextField registrationUserNameTextField;
     @FXML
     private TextField registrationPasswordTextField;
-
-    // ------------------- Registration end
+    // ------------------- Registration UI end
 
     private final UserService userService;
     private final HandService handService;
@@ -93,6 +91,7 @@ public class StartScreenController {
                     Authentication authToken = new UsernamePasswordAuthenticationToken(selectedUser.getId(), passwordTextField.getText());
                     authToken = authenticationManager.authenticate(authToken);
                     SecurityContextHolder.getContext().setAuthentication(authToken);
+
                     appendStatusText("success login");
                     FXEngine.showSecondAuthorizationStepStage();
                 } catch (AuthenticationException e) {
