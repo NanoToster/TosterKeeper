@@ -1,4 +1,4 @@
-package ru.vsu.services;
+package ru.vsu.services.security.first_step;
 
 import org.springframework.stereotype.Service;
 import ru.vsu.jpa.domain.HandInformation;
