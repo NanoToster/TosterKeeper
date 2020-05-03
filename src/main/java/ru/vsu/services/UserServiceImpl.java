@@ -34,11 +34,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addNewUser(String name, String email, String password, String userSecretForGoogleAuth) {
+    public User addNewUser(String name, String email, String password, String userSecretForGoogleAuth) {
         final User savedUser = userRepository.save(new User(name, email, passwordEncoder.encode(password)));
 
         cryptService.generateAndSaveUserSecretInfo(savedUser);
         googleAuthRepository.save(new GoogleAuthToUser(savedUser, userSecretForGoogleAuth));
+
+        return savedUser;
     }
 
     @Override

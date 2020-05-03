@@ -28,22 +28,16 @@ import java.util.stream.Collectors;
 public class MainNoteController {
     @FXML
     private TextArea statusArea;
-
     @FXML
     private TableView<UserNote> noteTable;
-
     @FXML
     private TableColumn<UserNote, String> userNameColumn;
-
     @FXML
     private TableColumn<UserNote, Date> noteCreationDateColumn;
-
     @FXML
     private TableColumn<UserNote, String> noteTitleColumn;
-
     @FXML
     private TextArea noteTitleArea;
-
     @FXML
     private TextArea noteBodyArea;
 
