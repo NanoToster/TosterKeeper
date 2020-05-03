@@ -15,3 +15,5 @@ VM options: --module-path ${PATH_TO_FX} --add-modules javafx.controls,javafx.fxm
     - Security
     - JPA
     - Mail
+4) MediaPipe (Google library for hand detecting)
+    You can find instructions how to use this functions in file "run_mediapipe.sh"
